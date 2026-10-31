@@ -2,13 +2,7 @@
 // 移植自 saas-identity-platform-react/src/pages/RoleListPage.tsx（REQ-2026-029 T-2）。
 // 契约字段 code/name→roleCode/roleName；删 I01 权限矩阵死按钮（PUT permissions
 // 契约已废弃，权限面由 role-menus 承接，对齐 vue/nextjs 基准）。
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  inject,
-  signal,
-} from "@angular/core";
+import { ChangeDetectionStrategy, Component, computed, inject } from "@angular/core";
 import { ActivatedRoute, RouterLink } from "@angular/router";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
