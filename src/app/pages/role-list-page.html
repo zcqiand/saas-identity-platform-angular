@@ -1,0 +1,59 @@
+<div class="rl-page">
+  <app-page-header [title]="'角色权限'" [descriptionText]="tenantLabel() + ' 的角色矩阵'">
+    <button
+      mat-flat-button
+      color="primary"
+      phActions
+      (click)="openCreate()"
+      data-fn="M00.F03.I02"
+    >
+      新建角色
+    </button>
+  </app-page-header>
+
+  <section class="rl-card">
+    <h2 class="rl-card-title">角色列表 ({{ roles().length }})</h2>
+    @if (list.isPending()) {
+    <app-page-loading />
+    } @else {
+    <div class="rl-table-wrap">
+      <table mat-table [dataSource]="roles()">
+        <ng-container matColumnDef="roleCode">
+          <th mat-header-cell *matHeaderCellDef>Code</th>
+          <td mat-cell *matCellDef="let r" class="rl-code">{{ r.roleCode }}</td>
+        </ng-container>
+        <ng-container matColumnDef="roleName">
+          <th mat-header-cell *matHeaderCellDef>名称</th>
+          <td mat-cell *matCellDef="let r" class="rl-name">{{ r.roleName }}</td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef class="rl-col-actions">操作</th>
+          <td mat-cell *matCellDef="let r" class="rl-actions">
+            <a
+              mat-button
+              [routerLink]="['/tenants', tenantId(), 'roles', r.id, 'menus']"
+              data-fn="M00.F04.I02"
+              >菜单授权</a
+            >
+            <button mat-button data-fn="M00.F03.I04" (click)="openEdit(r)">编辑</button>
+            <button
+              mat-button
+              class="rl-del"
+              data-fn="M00.F03.I05"
+              (click)="openDelete(r)"
+            >
+              删除
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumns"
+          data-testid="role-row"
+        ></tr>
+      </table>
+    </div>
+    }
+  </section>
+</div>
