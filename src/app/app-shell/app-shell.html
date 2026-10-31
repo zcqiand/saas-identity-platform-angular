@@ -1,0 +1,58 @@
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand">SaaS 身份平台</div>
+    <nav class="nav">
+      @for (g of groups(); track g.name) {
+      <div class="group">
+        <div class="group-name">{{ g.name }}</div>
+        @for (item of g.items; track item.to) {
+        <a class="nav-link" [routerLink]="item.to" [attr.data-fn]="item.fnId ?? null"
+          >{{ item.label }}</a
+        >
+        }
+      </div>
+      }
+    </nav>
+    <div class="sidebar-footer">
+      <app-backend-badge variant="sidebar" />
+    </div>
+  </aside>
+
+  <div class="main-col">
+    <header class="topbar">
+      <nav class="crumbs" aria-label="breadcrumb">
+        @for (c of crumbs(); track c.to; let last = $last) { @if (!$first) {
+        <span class="crumb-sep">›</span>
+        } @if (last) {
+        <span class="crumb-current">{{ c.label }}</span>
+        } @else {
+        <a class="crumb-link" [routerLink]="c.to">{{ c.label }}</a>
+        } }
+      </nav>
+      <div class="topbar-right">
+        @if (whoami(); as w) {
+        <span data-testid="whoami-badge" class="whoami" [title]="w.id"
+          >{{ w.email ?? w.id }}</span
+        >
+        } @if (currentTenantId()) {
+        <app-tenant-switcher />
+        }
+        <button
+          mat-stroked-button
+          class="logout-btn"
+          (click)="onLogout()"
+          data-testid="logout-btn"
+          data-fn="M01.F04.I06"
+        >
+          <mat-icon>logout</mat-icon>
+          登出
+        </button>
+      </div>
+    </header>
+    <main class="content">
+      <div class="content-inner">
+        <router-outlet />
+      </div>
+    </main>
+  </div>
+</div>
