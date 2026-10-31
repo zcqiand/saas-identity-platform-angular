@@ -1,0 +1,47 @@
+<div class="rg-page">
+  <app-page-header
+    [title]="'角色菜单授权'"
+    [descriptionText]="tenantLabel() + ' / 角色 ' + (roleId() || '—')"
+  >
+    <button mat-stroked-button phActions (click)="clearAll()" data-fn="M00.F04.I04">
+      清空
+    </button>
+    <button
+      mat-flat-button
+      color="primary"
+      phActions
+      (click)="save()"
+      [disabled]="saving()"
+      data-fn="M00.F04.I03"
+    >
+      {{ saving() ? "保存中…" : "保存 (" + granted().size + ")" }}
+    </button>
+  </app-page-header>
+
+  @if (groupsQ.isPending() || grantQ.isPending()) {
+  <app-page-loading />
+  } @else { @for (g of groups(); track g.appCode) {
+  <section class="rg-card">
+    <h2 class="rg-card-title">
+      {{ g.appName }}
+      <span class="rg-code">({{ g.appCode }})</span>
+      <span class="rg-code">{{ g.menus.length }} 项</span>
+    </h2>
+    <div class="rg-rows">
+      @for (m of g.menus; track m.id) {
+      <label class="rg-row" data-testid="menu-grant-row">
+        <input type="checkbox" [checked]="granted().has(m.id)" (change)="toggle(m.id)" />
+        <span class="rg-title">{{ m.title }}</span>
+        <span class="rg-path">{{ m.path }}</span>
+      </label>
+      }
+    </div>
+  </section>
+  }
+
+  <section class="rg-card">
+    <h2 class="rg-card-title rg-summary-title">当前授权摘要</h2>
+    <p class="rg-summary">共勾选 <b>{{ granted().size }}</b> 项菜单</p>
+  </section>
+  }
+</div>
