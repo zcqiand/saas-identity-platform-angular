@@ -5,7 +5,12 @@
 // 页面主按钮 loading 承担。
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
-import { MatDialog, MatDialogModule, MatDialogRef } from "@angular/material/dialog";
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogModule,
+  MatDialogRef,
+} from "@angular/material/dialog";
 import { MatDialogContent, MatDialogTitle } from "@angular/material/dialog";
 
 export interface ConfirmDialogData {
@@ -53,8 +58,8 @@ export interface ConfirmDialogData {
   ],
 })
 export class ConfirmDialogComponent {
-  readonly data: ConfirmDialogData = inject(MatDialogRef).config
-    .data as ConfirmDialogData;
+  // Material 22 的 MatDialogRef 无公开 config——数据一律走 MAT_DIALOG_DATA 注入
+  readonly data: ConfirmDialogData = inject(MAT_DIALOG_DATA) as ConfirmDialogData;
 }
 
 /** 便捷入口：afterClosed() 为 true 时才执行破坏性操作。 */

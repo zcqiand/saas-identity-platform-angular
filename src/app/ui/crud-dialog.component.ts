@@ -7,7 +7,12 @@ import { ChangeDetectionStrategy, Component, inject, signal } from "@angular/cor
 import { FormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCheckboxModule } from "@angular/material/checkbox";
-import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogModule,
+  MatDialogRef,
+} from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
@@ -61,7 +66,7 @@ export interface CrudDialogData {
               <mat-checkbox
                 [ngModel]="value(f)"
                 (ngModelChange)="setField(f.name, $event)"
-                data-testid="crud-field-{{ f.name }}"
+                [attr.data-testid]="'crud-field-' + f.name"
               >
                 {{ f.label }}
                 @if (f.hint) {
@@ -84,14 +89,14 @@ export interface CrudDialogData {
                       (ngModelChange)="setField(f.name, $event)"
                       [placeholder]="f.placeholder ?? ''"
                       rows="3"
-                      data-testid="crud-field-{{ f.name }}"
+                      [attr.data-testid]="'crud-field-' + f.name"
                     ></textarea>
                   }
                   @case ("select") {
                     <mat-select
                       [ngModel]="value(f)"
                       (ngModelChange)="setField(f.name, $event)"
-                      data-testid="crud-field-{{ f.name }}"
+                      [attr.data-testid]="'crud-field-' + f.name"
                     >
                       @for (o of f.options ?? []; track o.value) {
                         <mat-option [value]="o.value">{{ o.label }}</mat-option>
@@ -105,11 +110,11 @@ export interface CrudDialogData {
                       [ngModel]="value(f)"
                       (ngModelChange)="setField(f.name, $event)"
                       [placeholder]="f.placeholder ?? ''"
-                      data-testid="crud-field-{{ f.name }}"
+                      [attr.data-testid]="'crud-field-' + f.name"
                     />
                   }
                 }
-                @if (f.hint && f.type !== "checkbox") {
+                @if (f.hint) {
                   <mat-hint>{{ f.hint }}</mat-hint>
                 }
               </mat-form-field>
@@ -160,7 +165,8 @@ export interface CrudDialogData {
   ],
 })
 export class CrudDialogComponent {
-  readonly data: CrudDialogData = inject(MatDialogRef).config.data as CrudDialogData;
+  // Material 22 的 MatDialogRef 无公开 config——数据一律走 MAT_DIALOG_DATA 注入
+  readonly data: CrudDialogData = inject(MAT_DIALOG_DATA) as CrudDialogData;
   private readonly ref =
     inject<MatDialogRef<CrudDialogComponent, Record<string, FieldValue>>>(MatDialogRef);
 

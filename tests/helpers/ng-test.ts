@@ -4,7 +4,7 @@ import { provideHttpClient, withInterceptors } from "@angular/common/http";
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { provideZonelessChangeDetection } from "@angular/core";
 import { provideNoopAnimations } from "@angular/platform-browser/animations";
-import { provideRouter, RouterOutlet } from "@angular/router";
+import { provideRouter, RouterOutlet, type Routes } from "@angular/router";
 import { provideTanStackQuery, QueryClient } from "@tanstack/angular-query";
 import type { ComponentFixture } from "@angular/core/testing";
 
@@ -37,8 +37,9 @@ export class TestHostComponent {}
 /**
  * 真链路（真 HTTP + 拦截器链）providers 组装。登录/列表正路径直连真 :5101。
  * 需要打桩 HTTP 时改用 provideHttpClientTesting() 覆盖（见各 spec）。
+ * routes 缺省 = 登录页 + /tenants 落点桩；页面 spec 传自己的路由表覆盖。
  */
-export function realChainProviders(): unknown[] {
+export function realChainProviders(routes?: Routes): unknown[] {
   return [
     provideZonelessChangeDetection(),
     provideNoopAnimations(),
@@ -46,10 +47,12 @@ export function realChainProviders(): unknown[] {
       withInterceptors([apiBaseUrlInterceptor, authInterceptor, unauthorizedInterceptor]),
     ),
     provideTanStackQuery(() => new QueryClient()),
-    provideRouter([
-      { path: "login", component: LoginPageComponent },
-      { path: "tenants", component: TenantsStubComponent },
-    ]),
+    provideRouter(
+      routes ?? [
+        { path: "login", component: LoginPageComponent },
+        { path: "tenants", component: TenantsStubComponent },
+      ],
+    ),
   ];
 }
 
