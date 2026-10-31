@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "approved": false,
+  "base_sha": "10cc2acc5d025d41",
+  "summary": "镜像家族 shared 树 M/F 级骨架（saas-identity-platform-shared 同源；I 级子项留待首个需求逐片镜像登记）",
+  "mirror": true,
+  "changes": [
+    {
+      "id": "M00",
+      "action": "新增",
+      "name": "租户管理",
+      "reason": "REQ-2026-027-angular-frontend-skeleton"
+    },
+    {
+      "id": "M04",
+      "action": "新增",
+      "name": "应用管理",
+      "reason": "REQ-2026-027-angular-frontend-skeleton"
+    },
+    {
+      "id": "M00.F01",
+      "action": "新增",
+      "name": "租户维护",
+      "reason": "REQ-2026-027-angular-frontend-skeleton"
+    },
+    {
+      "id": "M00.F02",
+      "action": "新增",
+      "name": "租户成员",
+      "reason": "REQ-2026-027-angular-frontend-skeleton"
+    },
+    {
+      "id": "M00.F03",
+      "action": "新增",
+      "name": "租户角色",
+      "reason": "REQ-2026-027-angular-frontend-skeleton"
+    },
+    {
+      "id": "M00.F04",
+      "action": "新增",
+      "name": "角色权限",
+      "reason": "REQ-2026-027-angular-frontend-skeleton"
+    },
+    {
+      "id": "M00.F05",
+      "action": "新增",
+      "name": "租户应用",
+      "reason": "REQ-2026-027-angular-frontend-skeleton"
+    },
+    {
+      "id": "M01.F02",
+      "action": "新增",
+      "name": "角色成员",
+      "reason": "REQ-2026-027-angular-frontend-skeleton"
+    },
+    {
+      "id": "M01.F03",
+      "action": "新增",
+      "name": "租户成员",
+      "reason": "REQ-2026-027-angular-frontend-skeleton"
+    },
+    {
+      "id": "M01.F04",
+      "action": "新增",
+      "name": "SSO 登录",
+      "reason": "REQ-2026-027-angular-frontend-skeleton"
+    },
+    {
+      "id": "M04.F01",
+      "action": "新增",
+      "name": "应用维护",
+      "reason": "REQ-2026-027-angular-frontend-skeleton"
+    },
+    {
+      "id": "M04.F02",
+      "action": "新增",
+      "name": "应用启用/停用",
+      "reason": "REQ-2026-027-angular-frontend-skeleton"
+    },
+    {
+      "id": "M04.F03",
+      "action": "新增",
+      "name": "身份认证",
+      "reason": "REQ-2026-027-angular-frontend-skeleton"
+    },
+    {
+      "id": "M04.F04",
+      "action": "新增",
+      "name": "菜单管理",
+      "reason": "REQ-2026-027-angular-frontend-skeleton"
+    }
+  ],
+  "sync_files": [
+    "docs/requirements/REQ-2026-027-angular-frontend-skeleton.md",
+    "docs/functions/function-tree.md"
+  ],
+  "applied_at": "2026-10-31T08:45:42+0800"
+}
