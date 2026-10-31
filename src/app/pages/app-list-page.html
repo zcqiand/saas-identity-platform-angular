@@ -1,0 +1,75 @@
+<div class="al-page">
+  <app-page-header
+    [title]="'应用管理'"
+    [descriptionText]="
+      '平台级业务应用（同时承载 OAuth client）。每个应用有菜单树，租户通过订阅获得应用，再在租户内部分发菜单给角色。'
+    "
+  >
+    <button
+      mat-flat-button
+      color="primary"
+      phActions
+      (click)="openCreate()"
+      data-fn="M04.F01.I02"
+    >
+      新建应用
+    </button>
+  </app-page-header>
+
+  <section class="al-card">
+    <h2 class="al-card-title">应用列表 ({{ apps().length }})</h2>
+    @if (list.isPending()) {
+    <app-page-loading />
+    } @else if (apps().length === 0) {
+    <app-empty-state title="还没有应用" descriptionText="创建第一个应用以承载菜单" />
+    } @else {
+    <div class="al-table-wrap">
+      <table mat-table [dataSource]="apps()">
+        <ng-container matColumnDef="clientId">
+          <th mat-header-cell *matHeaderCellDef>Code / ClientID</th>
+          <td mat-cell *matCellDef="let a">
+            <div class="al-code">{{ a.clientId }}</div>
+            <div class="al-code-sub">clientId: {{ a.clientId }}</div>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="clientName">
+          <th mat-header-cell *matHeaderCellDef>名称</th>
+          <td mat-cell *matCellDef="let a" class="al-name">{{ a.clientName }}</td>
+        </ng-container>
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>状态</th>
+          <td mat-cell *matCellDef="let a">
+            <app-status-badge [status]="isActive(a.status) ? 'active' : 'suspended'" />
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef class="al-col-actions">操作</th>
+          <td mat-cell *matCellDef="let a" class="al-actions">
+            <button mat-button data-fn="M04.F02.I01" (click)="toggleStatus(a)">
+              {{ isActive(a.status) ? "停用" : "启用" }}
+            </button>
+            <button mat-button data-fn="M04.F01.I04" (click)="openEdit(a)">编辑</button>
+            <button
+              mat-button
+              class="al-del"
+              data-fn="M04.F01.I05"
+              (click)="openDelete(a)"
+            >
+              删除
+            </button>
+            <button mat-button [routerLink]="['/admin/clients', a.clientId, 'menus']">
+              菜单
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumns"
+          data-testid="app-row"
+        ></tr>
+      </table>
+    </div>
+    }
+  </section>
+</div>
