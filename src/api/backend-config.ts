@@ -76,3 +76,12 @@ export function getApiBaseUrl(): string {
 export function getApiMode(): string {
   return "nextjs";
 }
+
+/**
+ * 登录页自身应用的 clientId（B 方案：?client_id= 优先，缺省回落本值）。
+ * 与 react .env.example `VITE_LOGIN_CLIENT_ID=saas-console` 同值同语义；
+ * angular 无构建期 env 注入点（见文件头），故以常量承载——不是 demo 字面量
+ * 兜底：这是本应用（saas-console 控制台）的固定自标识，ADR-0019 禁的是
+ * 租户/用户等业务身份缺失时猜值。
+ */
+export const LOGIN_CLIENT_ID = "saas-console";

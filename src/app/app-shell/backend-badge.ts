@@ -26,7 +26,7 @@ import {
     >
       <button mat-stroked-button [matMenuTriggerFor]="menu" class="trigger">
         <mat-icon class="icon">dns</mat-icon>
-        <span class="label">{{ current()?.key ?? "(默认)" }}</span>
+        <span class="label">{{ current()?.key ?? "(env 默认)" }}</span>
         <mat-icon class="icon small">unfold_more</mat-icon>
       </button>
       <mat-menu #menu="matMenu">

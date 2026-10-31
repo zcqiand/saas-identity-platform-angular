@@ -1,0 +1,68 @@
+<div class="lp-wrap">
+  <mat-card class="lp-card">
+    <mat-card-header>
+      <mat-card-title>SaaS 多租户多应用身份平台</mat-card-title>
+      <mat-card-subtitle>使用账号密码登录管理控制台</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="lp-form" (submit)="$event.preventDefault(); onSubmit()">
+        <mat-form-field appearance="outline">
+          <mat-label>用户名</mat-label>
+          <input
+            matInput
+            name="username"
+            [ngModel]="username()"
+            (ngModelChange)="username.set($event)"
+            placeholder="alice"
+            required
+            autocomplete="username"
+            data-testid="login-username"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>密码</mat-label>
+          <input
+            matInput
+            name="password"
+            type="password"
+            [ngModel]="password()"
+            (ngModelChange)="password.set($event)"
+            placeholder="请输入密码"
+            required
+            autocomplete="current-password"
+            data-testid="login-password"
+          />
+        </mat-form-field>
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+          [disabled]="submitting()"
+          data-fn="M01.F04.I03"
+          data-testid="login-submit"
+        >
+          {{ submitting() ? "登录中…" : "登录" }}
+        </button>
+      </form>
+
+      <div class="lp-footer">
+        <!-- 获取密码说明：不再展示 demo 密码，引导关注公众号 / 小红书 -->
+        <div class="lp-demo">
+          <p>🔐 演示账号密码不公开</p>
+          <span>如需体验，请通过下方任一方式获取最新演示密码：</span>
+          <ul>
+            <li>微信公众号 <code>南荣相如</code>，回复「演示」</li>
+            <li>小红书 <code>&#64;南荣相如</code>，查看置顶笔记</li>
+          </ul>
+        </div>
+
+        <!-- 2026-09-12：BackendBadge 切换器（dev 诊断，选择持久化 localStorage，
+             下一个请求即生效，含登录 POST 本身） -->
+        <div>
+          <p class="lp-mode-label">后端模式（切换后下一个请求即生效）</p>
+          <app-backend-badge variant="plain" />
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
