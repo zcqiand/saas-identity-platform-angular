@@ -38,10 +38,10 @@
 
 | 任务 ID | 任务描述 | 类型 | 负责人 | 预估 | 状态 |
 |---|---|---|---|---|---|
-| T-1 | W0 基建：deps（Material/CDK/angular-query/orval）、orval 管线出 endpoints/、HTTP 拦截器（Bearer+401）、tenant/selection signals 状态、路由+守卫+AppShell、backend-config 移植 | 开发 | Claude | — | 开发中 |
-| T-2 | W1 页面移植 ×8：红先 TDD，data-fn 锚随组件走，逐 F 转绿 | 开发 | Claude | — | 待开始 |
-| T-3 | 测试真化链：global-setup（seed-db + 起 nextjs :5101 + jose 铸 JWT + 探活）、setup（jest-dom 等价 + 真链注入） | 开发 | Claude | — | 待开始 |
-| T-4 | 收官：树状态推进（规划→已上线，tree_change 免批通道）、gate 全绿、handoff | 收口 | Claude | — | 待开始 |
+| T-1 | W0 基建：deps（Material/CDK X15 槽首装 + angular-query + orval）出 endpoints/、HTTP 拦截器（Bearer+401）、tenant/selection signals 状态、路由+守卫+AppShell、backend-config 移植 | 开发 | Claude | — | 完成 |
+| T-2 | W1 页面移植 ×8（tenant-list / user-list / role-list / role-menu-grant / tenant-applications / app-list / menu-tree / login）+ 壳层回归（sidebar 高亮/面包屑/whoami/tenant-switcher/require-auth），70 测试真链全绿 | 开发 | Claude | — | 完成 |
+| T-3 | 测试真化链：global-setup（seed-db 灌 saas_test + 复用 nextjs :5101 + jose 铸真 JWT + 五步探活），zoneless+jsdom 指纹（TestHost+native input/信号） | 开发 | Claude | — | 完成 |
+| T-4 | 收官：树状态推进（规划→开发中 mirror 免批 ×64 已落 2026-11-01；开发中→已上线 GA 批待人工验收记录后另批）、gate 全绿、handoff | 收口 | Claude | — | 开发中 |
 
 ## 4. 功能影响（需求与功能对齐的唯一位置）
 
