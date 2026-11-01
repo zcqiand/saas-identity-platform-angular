@@ -41,7 +41,7 @@
 | T-1 | W0 基建：deps（Material/CDK X15 槽首装 + angular-query + orval）出 endpoints/、HTTP 拦截器（Bearer+401）、tenant/selection signals 状态、路由+守卫+AppShell、backend-config 移植 | 开发 | Claude | — | 完成 |
 | T-2 | W1 页面移植 ×8（tenant-list / user-list / role-list / role-menu-grant / tenant-applications / app-list / menu-tree / login）+ 壳层回归（sidebar 高亮/面包屑/whoami/tenant-switcher/require-auth），70 测试真链全绿 | 开发 | Claude | — | 完成 |
 | T-3 | 测试真化链：global-setup（seed-db 灌 saas_test + 复用 nextjs :5101 + jose 铸真 JWT + 五步探活），zoneless+jsdom 指纹（TestHost+native input/信号） | 开发 | Claude | — | 完成 |
-| T-4 | 收官：树状态推进（规划→开发中 mirror 免批 ×64 已落 2026-11-01；开发中→已上线 GA 批待人工验收记录后另批）、gate 全绿、handoff | 收口 | Claude | — | 开发中 |
+| T-4 | 收官：树状态推进（规划→开发中 mirror 免批 ×64 已落 2026-11-01；开发中→已上线 GA 批 ×50 已随人工验收通过另批）、gate 全绿、handoff | 收口 | Claude | — | 完成 |
 
 ## 4. 功能影响（需求与功能对齐的唯一位置）
 
@@ -62,3 +62,10 @@
 | Angular unit-test builder 对 global-setup/真链支持未知 | T-3 | 先 spike 验证 builder 的 vitest 配置通道；不通则用 setup 文件内幂等单例起链 | 测试基建独立提交，可单独回退 |
 | Material 与 zoneless 兼容边角 | 全局 | 首页移植即验证，动画用 provideAnimationsAsync | 逐页可独立回退（页面级 commit） |
 | mold 托管文件漂移（app.config.ts/angular.json/styles.css 需改） | --sync 警告 | 漂移随批注释说明，sync_always 三锚文件不碰 | git revert 页面级 commit |
+
+## 7. 收官记录（2026-11-01）
+
+- **人工验收：通过**（2026-11-01 人裁）。八页 + 壳层 14 文件 70 测试真链全绿，gate exit 0（66 条目引用完整）。GA 翻转批（50 ID 开发中→已上线，镜像 react 已上线状态）据此走 tree_change mirror 免批。
+- **偏差一（追认不移植）**：react `tests/unit/oauth-client.test.ts` 不移植——其被测对象 `src/lib/oauth-flow.ts` 在 react 仓为零消费者的测试-only 死代码；angular 登录链仅接 oAuthAuthorize + token 兑换，无 refresh_token grant 接线（grep 实证），故 M04.F03.I03「令牌刷新」不登记进 angular 树。人裁追认 2026-11-01。
+- **偏差二（人裁废弃）**：M01.F04.I07「登出（全局 SSO）」跟随 react 裁「已废弃」（人裁 2026-11-01；废弃不属 mirror 免批类，随本批人工批准通道落树）。
+- 保持「开发中」（镜像 react 非已上线状态）：M00.F02.I06 邀请成员 / M00.F02.I07 接受邀请 / M01.F01 / M00.F04.I02 等以 react 树实况为准；仍「规划」2 条 = M00.F02.I07、M01.F04.I07（随废弃批转出）。

@@ -1,25 +1,33 @@
 {
   "schema": 1,
-  "project": "saas-identity-platform-angular",
-  "current_task": "REQ-2026-027 已闭环（X15 骨架进家族 + 首航 L0-L5 全绿 + gitlink 注册），等待第一个业务需求",
+  "project": "_suite",
+  "current_task": "REQ-2026-029 saas-angular T-4 收官：树推进×64 已落、gate 全绿 70/70、aac7c85 已推送+gitlink 16babf8；等人工验收解锁 GA 翻转批；lab-angular 全量移植未开始",
+  "last_session_at": "2026-10-26",
   "done": [
-    "mold 建 angular profile + 适配器（suite commit cccfbf7/cea724d）",
-    "功能树 M/F 级镜像 shared BASE 13 F（tree_change mirror 免批，REQ-2026-027 锚）",
-    "双仓首 commit a878743 + 首航收口 f29e4fd 已推远端",
-    "首航四坑修于 mold：eslint flat config 形状（v22 configs 裸数组逐条挂 files）/tsconfig compilerOptions 层级/trace wrapper 反斜杠/fnReporter 格式",
-    "Node 24.15.0 + npm install（418 包 npmmirror），gate L0-L5 全绿（2026-10-31 实跑验证）"
+    "八页+壳层 14 文件 70 测试真链全绿（切片 1-9 九个 commit，ad299e0..2f15d82）",
+    "trace.json 重生成（70 tests/0 fns/0 inert，TRACE_MAP=1 正确姿势在案）",
+    "树状态推进：mirror 免批提案 ×64 规划→开发中 --apply+树写入+手动焚账，aac7c85",
+    "REQ-2026-029 T-1/T-2/T-3→完成、T-4→开发中",
+    "gate exit 0（66 条目引用完整，2 软告警 M01.F01.I01/M04.F04.I08 不阻断）",
+    "记忆入账：angular-stack-ledger T-4 收官条 + long-cjk Edit 批串写增补"
   ],
-  "next": "等用户 /req 提第一个需求原文 → 落 docs/requirements/ → 涉及子项 tree_change mirror 登记（I 级树不预铺）→ 红先 TDD：spec 里 import { fnTest } from '../../tests/fn' 挂 ID",
+  "next": [
+    "人裁三问（见 open_questions）后：把「人工验收…通过」写进 REQ-2026-029，出 GA mirror 提案（开发中→已上线 ~50 ID 镜像 react 已上线状态）--apply",
+    "废弃/迁移类走人工 --approve：M01.F04.I07 若裁废弃",
+    "lab-angular 全量移植（26F/24 页/35 测试文件），own REQ 文档，lab 仓入 L4_DB_INJECT_REPOS 须人裁"
+  ],
   "open_questions": [
-    "dev server 端口 5112 仅登记未接线；首个需求若要 ng serve 联调，需先定与后端的 CORS 白名单接线"
+    "人工验收：saas-angular 八页移植是否通过（解锁 GA 翻转批）",
+    "M01.F04.I07 登出（全局 SSO）预留位：镜像 react 裁「废弃」？（mirror 免批不含废弃，须人工 --approve）",
+    "oauth-client.test.ts 不移植追认：react 的 src/lib/oauth-flow.ts 是测试-only 死代码，angular 无 refresh_token 接线，不移植该测试文件（M04.F03.I03 相应不登记）"
   ],
   "dont": [
-    "不要装回 jsdom ^25（jsdom ≤25 × Node 24.15 = 11 倍慢，撞 10s testTimeout，家族已全对齐 ^29.1.1；angular 用 ^30）",
-    "不要改 .harness/stack.json 让门变松",
-    "不要给 skip 的测试挂功能 ID；不要先改代码后补功能清单",
-    "不要把 tests/fnReporter.mjs 改回 .ts——reporter 由 vitest 裸 import() 加载，不经转换管线，.ts 会炸",
-    "不要把 trace wrapper（scripts/trace-test.mjs）挂到 L4——无依赖时 L4 会假绿，wrapper 只服务 trace_cmd",
-    "不要动 shared 契约单方面改形状（ADR-0029）；发现需要≠shared 先停下问人"
+    "别再并行批 Edit 写 CJK 表格行——串写实锤，单发短锚逐行+git diff 尾列对账",
+    "trace-test.mjs 必须 DATABASE_URL+TRACE_MAP=1 双 env，缺 TRACE_MAP 是静默不 emit",
+    "杀 vitest/ng 残留进程前先看命令行，别杀 live nextjs :5101",
+    "GA 翻转不能进 mirror 提案除非 REQ 已记录人工验收通过"
   ],
-  "last_gate_passed_at": "2026-10-31"
+  "last_gate_passed_at": "2026-10-26（go 双仓 L0-L5 全绿收口 + _suite 本体绿；上一次 --all 全量=2026-10-24，_suite+23 仓 PASS）",
+  "active_branch": "master",
+  "ahead_of_origin": "0"
 }
