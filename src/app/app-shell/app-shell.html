@@ -6,7 +6,13 @@
       <div class="group">
         <div class="group-name">{{ g.name }}</div>
         @for (item of g.items; track item.to) {
-        <a class="nav-link" [routerLink]="item.to" [attr.data-fn]="item.fnId ?? null"
+        <a
+          class="nav-link"
+          [routerLink]="item.to"
+          [attr.data-fn]="item.fnId ?? null"
+          [attr.data-testid]="item.fnId ? 'sidebar-nav-item-' + item.fnId : null"
+          routerLinkActive="nav-active"
+          [routerLinkActiveOptions]="{ exact: true }"
           >{{ item.label }}</a
         >
         }

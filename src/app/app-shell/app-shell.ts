@@ -4,7 +4,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
-import { Router, RouterLink, RouterOutlet } from "@angular/router";
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
 import { injectQuery } from "@tanstack/angular-query";
 import { AdminTenantsService } from "../../api/endpoints/admin-tenants/admin-tenants.service";
 import { MeService } from "../../api/endpoints/me/me.service";
@@ -36,6 +36,7 @@ const SUB_PATH_LABEL: Record<string, string> = {
   imports: [
     RouterOutlet,
     RouterLink,
+    RouterLinkActive,
     MatButtonModule,
     MatIconModule,
     TenantSwitcher,

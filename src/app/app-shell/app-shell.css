@@ -52,6 +52,13 @@
   color: #ffffff;
 }
 
+/* routerLinkActive 高亮（react 侧 bg-slate-700 同语义）：深底亮块，唯一选中 */
+.nav-link.nav-active {
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  font-weight: 500;
+}
+
 .sidebar-footer {
   padding: 0.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
