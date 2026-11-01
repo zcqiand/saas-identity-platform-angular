@@ -66,6 +66,7 @@
 ## 7. 收官记录（2026-11-01）
 
 - **人工验收：通过**（2026-11-01 人裁）。八页 + 壳层 14 文件 70 测试真链全绿，gate exit 0（66 条目引用完整）。GA 翻转批（50 ID 开发中→已上线，镜像 react 已上线状态）据此走 tree_change mirror 免批。
-- **偏差一（追认不移植）**：react `tests/unit/oauth-client.test.ts` 不移植——其被测对象 `src/lib/oauth-flow.ts` 在 react 仓为零消费者的测试-only 死代码；angular 登录链仅接 oAuthAuthorize + token 兑换，无 refresh_token grant 接线（grep 实证），故 M04.F03.I03「令牌刷新」不登记进 angular 树。人裁追认 2026-11-01。
+- **偏差一（追认不移植）**：react `tests/unit/oauth-client.test.ts` 不移植——其被测对象 `src/lib/oauth-flow.ts` 在 react 仓为零消费者的测试-only 死代码；angular 登录链仅接 oAuthAuthorize + token 兑换，无 refresh_token grant 接线（grep 实证），故 react 树的「令牌刷新」子项不登记进 angular 树。人裁追认 2026-11-01。
 - **偏差二（人裁废弃）**：M01.F04.I07「登出（全局 SSO）」跟随 react 裁「已废弃」（人裁 2026-11-01；废弃不属 mirror 免批类，随本批人工批准通道落树）。
-- 保持「开发中」（镜像 react 非已上线状态）：M00.F02.I06 邀请成员 / M00.F02.I07 接受邀请 / M01.F01 / M00.F04.I02 等以 react 树实况为准；仍「规划」2 条 = M00.F02.I07、M01.F04.I07（随废弃批转出）。
+- 保持「开发中」（镜像 react 非已上线状态）：M00.F02.I06 邀请成员 / M00.F02.I07 接受邀请 / M01.F01 / M00.F04.I02 等以 react 树实况为准；仍「规划」1 条 = M00.F02.I07（M01.F04.I07 已随废弃批转出）。
+- **GA 批修正（2026-11-01 gate 实证后）**：M04.F04.I08「当前用户有效菜单」GA 批曾翻已上线，但 angular 未接 /me/menus 用户菜单渲染（grep 实证），按 L5 指引诚实退回「开发中」——angular 与 react 的实际接线差异，非移植缺陷。
