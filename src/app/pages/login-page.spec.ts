@@ -115,10 +115,11 @@ describe("M01.F04.I03 账号密码登录", () => {
     expect(btn).toHaveAttribute("data-fn", "M01.F04.I03");
   });
 
-  it("展示演示账号获取引导（账号列表已随密码下架删除，2026-09-01）", async () => {
+  it("展示演示账号密码（2026-11-03 改版：直接展示，引流文案下线）", async () => {
     await renderLogin();
     expect(document.body.textContent).toMatch(/演示账号/);
-    expect(document.body.textContent).toMatch(/公众号/);
+    expect(document.body.textContent).toMatch(/alice/);
+    expect(document.body.textContent).toMatch(/dev123456/);
   });
 
   it("?client_id= 覆盖 LOGIN_CLIENT_ID（B 方案 clientId 门）", async () => {

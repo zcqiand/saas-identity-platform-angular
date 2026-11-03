@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "project": "_suite",
-  "current_task": "REQ-2026-029 saas-angular T-4 收官：树推进×64 已落、gate 全绿 70/70、aac7c85 已推送+gitlink 16babf8；等人工验收解锁 GA 翻转批；lab-angular 全量移植未开始",
+  "current_task": "REQ-2026-029 saas-angular 全闭环：GA 批 50 ID 已上线落地（含 I08 退回修正）、I07 裁废弃、gate 全绿、865985e 已推送+gitlink 35db10c；lab-angular 全量移植未开始",
   "last_session_at": "2026-10-26",
   "done": [
     "八页+壳层 14 文件 70 测试真链全绿（切片 1-9 九个 commit，ad299e0..2f15d82）",
@@ -9,23 +9,23 @@
     "树状态推进：mirror 免批提案 ×64 规划→开发中 --apply+树写入+手动焚账，aac7c85",
     "REQ-2026-029 T-1/T-2/T-3→完成、T-4→开发中",
     "gate exit 0（66 条目引用完整，2 软告警 M01.F01.I01/M04.F04.I08 不阻断）",
-    "记忆入账：angular-stack-ledger T-4 收官条 + long-cjk Edit 批串写增补"
+    "人工验收通过（人裁三问全批：GA 解锁/I07 废弃/死码追认），REQ §7 收官记录落档",
+    "GA mirror 提案 ×50 开发中→已上线 --apply+树写入+焚账；M01.F04.I07 废弃迁段（批准通道）",
+    "gate 实证两轮修正：REQ §7 裸 ID 悬空引用清除、M04.F04.I08 诚实退回开发中（angular 未接 /me/menus），终态 exit 0",
+    "commits: aac7c85(树推进+REQ) → 36d4172(GA 批+废弃) → 865985e(I08 修正)，全部已推送；gitlink 16babf8→35db10c"
   ],
   "next": [
-    "人裁三问（见 open_questions）后：把「人工验收…通过」写进 REQ-2026-029，出 GA mirror 提案（开发中→已上线 ~50 ID 镜像 react 已上线状态）--apply",
-    "废弃/迁移类走人工 --approve：M01.F04.I07 若裁废弃",
-    "lab-angular 全量移植（26F/24 页/35 测试文件），own REQ 文档，lab 仓入 L4_DB_INJECT_REPOS 须人裁"
+    "lab-angular 全量移植（26F/24 页/35 测试文件）：own REQ 文档 → W0 基建复用 saas 先例 → 逐页 TDD；lab 仓入 L4_DB_INJECT_REPOS 须人裁",
+    "M04.F04.I08 用户菜单渲染接线（angular 与 react 实差，Phase 1+ 可补）"
   ],
   "open_questions": [
-    "人工验收：saas-angular 八页移植是否通过（解锁 GA 翻转批）",
-    "M01.F04.I07 登出（全局 SSO）预留位：镜像 react 裁「废弃」？（mirror 免批不含废弃，须人工 --approve）",
-    "oauth-client.test.ts 不移植追认：react 的 src/lib/oauth-flow.ts 是测试-only 死代码，angular 无 refresh_token 接线，不移植该测试文件（M04.F03.I03 相应不登记）"
+    "lab 批开工前：lab-angular 入 L4_DB_INJECT_REPOS 表（gate 注入 DATABASE_URL）须人裁"
   ],
   "dont": [
     "别再并行批 Edit 写 CJK 表格行——串写实锤，单发短锚逐行+git diff 尾列对账",
     "trace-test.mjs 必须 DATABASE_URL+TRACE_MAP=1 双 env，缺 TRACE_MAP 是静默不 emit",
     "杀 vitest/ng 残留进程前先看命令行，别杀 live nextjs :5101",
-    "GA 翻转不能进 mirror 提案除非 REQ 已记录人工验收通过"
+    "GA 翻转前先 grep 实证本仓接线（I08 教训：镜像 react 状态≠本仓事实，L5 会拦已上线无 UI 入口）"
   ],
   "last_gate_passed_at": "2026-10-26（go 双仓 L0-L5 全绿收口 + _suite 本体绿；上一次 --all 全量=2026-10-24，_suite+23 仓 PASS）",
   "active_branch": "master",
