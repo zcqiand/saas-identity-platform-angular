@@ -19,7 +19,7 @@ saas 家族 X15 扩展槽：Angular 22 前端栈进家族。suite 侧新增 mold
 | 疑问 | 澄清结论 | 澄清人 | 日期 |
 |---|---|---|---|
 | 技术栈版本 | Angular 22（当前稳定 22.2.x；TypeScript ~6.0 为 @angular/build peer 硬约束；Vitest 4 为默认 runner） | zcqiand | 2026-10-31 |
-| 目录名 / 中文名 | 家族名-angular 后缀 / 「saas身份平台 Angular」 | zcqiand | 2026-10-31 |
+| 目录名 / 中文名 | 家族名-angular 后缀 / 「SaaS 多租户多应用身份平台 Angular」 | zcqiand | 2026-10-31 |
 | 功能树来源 | 镜像家族 shared 全树（M/F 级），不手拆独立树 | zcqiand | 2026-10-31 |
 
 ## 2. 验收标准
